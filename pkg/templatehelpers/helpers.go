@@ -71,6 +71,10 @@ func TemplateHelpers() template.FuncMap {
 			}
 			return t.Format("02.01.2006 15:04")
 		},
+
+		"hasPrefix": func(s, prefix string) bool {
+			return len(s) >= len(prefix) && s[:len(prefix)] == prefix
+		},
 	}
 	return fm
 }
