@@ -2,7 +2,8 @@ package renderer
 
 import (
 	"net/http"
-	"zatrano/pkg/flashmessages"
+
+	"davet.link/pkg/flashmessages"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
@@ -36,6 +37,10 @@ func prepareRenderData(c *fiber.Ctx, data fiber.Map) fiber.Map {
 		if errStr, okStr := errVal.(string); okStr {
 			handlerError = errStr
 		}
+	}
+
+	if c != nil {
+		data["Path"] = c.Path()
 	}
 
 	for key, value := range data {
